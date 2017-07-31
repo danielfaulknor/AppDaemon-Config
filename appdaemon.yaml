@@ -1,0 +1,26 @@
+AppDaemon:
+  logfile: STDOUT
+  errorfile: STDERR
+  threads: 10
+HASS:
+  ha_url: http://10.199.160.2:8123
+  ha_key: catch23
+HADashboard:
+  dash_url: http://10.199.160.3:5050
+# Apps
+Lounge Motion Lights:
+  class: MotionLights
+  entity_off: group.lounge_lights
+  entity_on: group.lounge_lights
+  module: motion_lights
+  sensor: binary_sensor.lounge_motion_inside_door
+  delay: '3600'
+  countdown: sensor.motion_lounge_countdown
+Bathroom Motion Lights:
+  class: MotionLights
+  entity_off: light.bathroom
+  entity_on: light.bathroom
+  module: motion_lights
+  sensor: binary_sensor.bathroom_motion
+  delay: '1200'
+  countdown: sensor.motion_bathroom_countdown
