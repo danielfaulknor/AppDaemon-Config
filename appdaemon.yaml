@@ -24,3 +24,11 @@ Bathroom Motion Lights:
   sensor: binary_sensor.bathroom_motion
   delay: '1200'
   countdown: sensor.motion_bathroom_countdown
+Dryer Shed Motion Lights:
+  class: MotionLights
+  entity_off: switch.dryer_shed_light
+  entity_on: switch.dryer_shed_light
+  module: motion_lights
+  sensor: binary_sensor.dryer_shed_motion
+  delay: '30'
+  countdown: sensor.motion_dryershed_countdown
