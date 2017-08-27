@@ -62,7 +62,7 @@ Lounge Heatpump:
   switch: input_boolean.smart_heat
   thermostats: climate.lounge
   off_temp: '16'
-  on_temp: '20'
+  on_temp: '21'
   input_select: input_select.house_mode,Awake,Asleep Partial
 Switch Reset:
   class: SwitchReset
