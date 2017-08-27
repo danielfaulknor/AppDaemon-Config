@@ -6,16 +6,24 @@ HASS:
   ha_url: http://10.199.160.2:8123
   ha_key: catch23
 HADashboard:
-  dash_url: http://10.199.160.3:5050
+  dash_url: http://ha-docker:5050
 # Apps
 Lounge Motion Lights:
   class: MotionLights
   entity_off: group.lounge_lights
   entity_on: group.lounge_lights
   module: motion_lights
-  sensor: binary_sensor.lounge_motion_inside_door
+  sensor: binary_sensor.lounge_motion_inside_door,binary_sensor.motion_lounge_2
   delay: '3600'
   countdown: sensor.motion_lounge_countdown
+Lounge Motion WallPanel:
+  class: MotionLights
+  entity_off: switch.lounge_wallpanel
+  entity_on: switch.lounge_wallpanel
+  module: motion_lights
+  sensor: binary_sensor.lounge_motion_inside_door,binary_sensor.motion_lounge_2
+  delay: '5'
+  countdown: sensor.motion_lounge_wallpanel_countdown
 Bathroom Motion Lights:
   class: MotionLights
   entity_off: light.bathroom
@@ -32,3 +40,35 @@ Dryer Shed Motion Lights:
   sensor: binary_sensor.dryer_shed_motion
   delay: '30'
   countdown: sensor.motion_dryershed_countdown
+Dryer Shed Fans:
+  class: MotionLights
+  entity_off: switch.dryer_extractor_fans
+  entity_on: switch.dryer_extractor_fans
+  module: motion_lights
+  sensor: binary_sensor.rpidryer_fan_switch
+  delay: '7200'
+  countdown: sensor.fans_dryershed_countdown
+Lounge WallPanel Momentary:
+  class: MomentarySwitch
+  module: momentary_switch
+  switch: switch.lounge_wallpanel
+  delay: 1
+Lounge Heatpump:
+  class: SmartHeat
+  module: smart_heat
+  morning_on_week: '06:00:00'
+  morning_on_weekend: '08:00:00'
+  evening_on: '17:00:00'
+  switch: input_boolean.smart_heat
+  thermostats: climate.lounge
+  off_temp: '16'
+  on_temp: '20'
+  input_select: input_select.house_mode,Awake,Asleep Partial
+Switch Reset:
+  class: SwitchReset
+  module: switch_reset
+  delay: '1'
+  file: 'devicedb'
+Control Brightness:
+  class: ControlBrightness
+  module: control_brightness

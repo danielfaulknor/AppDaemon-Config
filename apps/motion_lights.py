@@ -91,7 +91,6 @@ class MotionLights(appapi.AppDaemon):
   # Callback on timer tick to update the countdown sensor and check if we're out of time
   def light_check(self, kwargs):
     self.count -= 1
-    self.log(self.count)
     # Update countdown sensor
     self.set_countdown(str(datetime.timedelta(seconds=self.count)))
     # If we're at 0, turn our entities off
