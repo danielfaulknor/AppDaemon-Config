@@ -8,14 +8,26 @@ HASS:
 HADashboard:
   dash_url: http://ha-docker:5050
 # Apps
-Lounge Motion Lights:
+Lounge Motion Lights Day Time:
   class: MotionLights
   entity_off: group.lounge_lights
   entity_on: group.lounge_lights
   module: motion_lights
   sensor: binary_sensor.lounge_motion_inside_door,binary_sensor.motion_lounge_2
-  delay: '3600'
+  delay: '2700'
   countdown: sensor.motion_lounge_countdown
+  constrain_start_time: "07:00:00"
+  constrain_end_time: "23:00:00"
+Lounge Motion Lights Night Time:
+  class: MotionLights
+  entity_off: light.lounge_main
+  entity_on: light.lounge_main
+  module: motion_lights
+  sensor: binary_sensor.lounge_motion_inside_door,binary_sensor.motion_lounge_2
+  delay: '300'
+  countdown: sensor.motion_lounge_countdown
+  constrain_start_time: "23:00:00"
+  constrain_end_time: "07:00:00"
 Lounge Motion WallPanel:
   class: MotionLights
   entity_off: switch.lounge_wallpanel
